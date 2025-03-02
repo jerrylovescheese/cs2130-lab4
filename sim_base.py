@@ -17,8 +17,28 @@ def execute(instruction, oldPC):
     a = get_bits(instruction, 2, 4)
     icode = get_bits(instruction, 4, 7)
     reserve_bit = get_bits(instruction, 7, 8)
-    if reserve_bit == 1:
+
+    if reserve_bit == 1 and icode != 0:
         return oldPC
+
+    if reserve_bit == 1 and icode == 0:
+        match b:
+            case 0:
+                rsp -= 1
+                M[rsp] = R[a]
+            case 1:
+                R[a] = M[rsp]
+                rsp += 1
+            case 2:
+                rsp -= 1
+                # push pc+2 onto the stack
+                M[rsp] = oldPC + 2
+                # performs an unconditional jump to the address given as the immediate value following the instruction
+                oldPC = M[oldPC + 1]
+            case 3:
+                oldPC = M[rsp]
+                rsp -= 1
+        return oldPC + 1
 
     match icode:
         case 0:
@@ -60,6 +80,7 @@ def execute(instruction, oldPC):
 # initialize memory and registers
 R = [0 for i in range(4)]
 M = [0 for i in range(256)]
+rsp = 0xFF  # new!
 
 # initialize control registers; do not modify these directly
 _ir = 0
