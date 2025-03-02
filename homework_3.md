@@ -38,7 +38,15 @@ So let's push r1 and pop it before returning.
 68 10
 (the second number here is random)
 
-* is r1 0? cause if it is let's just end the conversation and pc = r2
+* is r1 0? cause if it is let's just end the conversation and **(new in homework 4)** pc = pop r1 which is 85
+* we can't let pc = 85 but we can let r3 = (the address of 85) and pc = r3
+* construct r3 as the address of the instruction 85
+**icode = 6, b = 0**
+01101100
+
+6C (address of 85)
+
+* if r1 <= 0, pc = r3
 **icode = 7**
 01110110
 
