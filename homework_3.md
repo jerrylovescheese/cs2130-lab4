@@ -44,13 +44,13 @@ So let's push r1 and pop it before returning.
 **icode = 6, b = 0**
 01101100
 
-6C (address of 85)
+6C 2F (not 0F because in homework 4 mod is in the third row)
 
 * if r1 <= 0, pc = r3
 **icode = 7**
-01110110
+01110111
 
-76
+77
 
 * turn r0 negative
 **icode = 5, b = 1**
