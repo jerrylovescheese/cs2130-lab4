@@ -60,11 +60,30 @@ gcd(a,b) = gcd(b, modulo(a,b))
 
 0C
 
-8. call 20
+8. if r3 <= 0, pc = r1 (The greatest common divisor is smallest result seen before 0.) if r3 > 0, go to step 9 and continue recursive calls (same as step 4)
+**icdoe = 7, register = r3 & r1**
+01111101
+
+7D
+
+9. call 20
 **icode = 8, b = 2**
 10000010
 
 82 20
 
-9. ret
+10. store e0 to r3 because e0 is where the end result should be
+**icode = 6, b = 0, register = r3**
+01101100
+
+6C E0
+
+11. write r0 to memory address at r3
+**icode = 4 register = r0 & r3**
+01000011
+
+43
+
+10. ret
+
 83

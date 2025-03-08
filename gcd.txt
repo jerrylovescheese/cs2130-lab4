@@ -1,0 +1,101 @@
+push R1
+1000 0100 //84
+
+r2 = a
+r3 = b
+and already saved in r2 and r3
+
+check r3 < 0 or not then halt
+
+save the recent pc to r1, then pc + orders
+
+r1 = pc 
+0111
+57
+
+r1 += some numbers, point to halt
+0101
+65 11
+
+check r3
+1101
+7D
+
+a = -a which is r2 = -r2
+1001
+59
+
+reset r1 to recent pc
+0111
+57
+
+r2 += r3
+1011
+1B
+
+if r2 <=0, pc = r1; else pc +1
+1001
+79
+
+r2 = -r2
+59
+
+r2 += r3
+1011
+1B
+
+r0 = r2
+0 000 0010
+
+pop r1
+85
+
+return 83
+
+
+
+
+whole code
+r2 = M[01]
+68
+
+r3 = M[03]
+6C
+
+save r1 = pc
+0111
+57
+r1 += some numbers
+65 XX
+
+if r3 == 0,write r2 to 0xE0
+1101
+7D
+
+calculate a mod b
+82 XX
+
+r2 = r3
+1011
+0B
+
+r3 = r0
+1100
+0C
+
+check r0 if <= 0, go to r1; else recall function
+0001
+71
+
+recall the function
+82 08
+
+write r2 to 0XE0
+
+save 0xE0 to r1
+0100
+64 E0
+
+write r2 to r1
+1001
+49
